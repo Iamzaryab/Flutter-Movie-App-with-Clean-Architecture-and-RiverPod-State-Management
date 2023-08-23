@@ -1,15 +1,17 @@
-
 import 'package:dartz/dartz.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_movies.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_cached_movies.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/di/Injector.dart';
 import 'package:filmku/features/home/presentation/providers/state/movie_state.dart';
 import 'package:filmku/models/domain/movies.dart';
 import 'package:filmku/shared/util/app_exception.dart';
 
-import 'package:filmku/features/home/domain/repositories/home_repository.dart';
-
 class MovieNotifier extends StateNotifier<MovieState> {
-  final HomeRepository homeRepository = injector.get<HomeRepository>();
+  final FetchAndCacheMovies _fetchAndCacheMovies =
+      injector.get<FetchAndCacheMovies>();
+  final FetchCachedMovies _fetchCachedMovies =
+      injector.get<FetchCachedMovies>();
 
   MovieNotifier() : super(const MovieState.initial());
 
@@ -19,7 +21,7 @@ class MovieNotifier extends StateNotifier<MovieState> {
 
   Future<void> getMovies({required String type}) async {
     if (state.state == MoviesConcreteState.initial) {
-      final movies = await homeRepository.fetchCachedMovies(type: type);
+      final movies = await _fetchCachedMovies.execute(type: type);
       updateStateFromGetMoviesResponse(movies);
     }
     if (isFetching && state.state != MoviesConcreteState.fetchedAllMovies) {
@@ -29,9 +31,7 @@ class MovieNotifier extends StateNotifier<MovieState> {
             : MoviesConcreteState.loading,
         isLoading: true,
       );
-      final movies = await homeRepository.fetchAndCacheMovies(
-          page: state.page + 1,
-          type: type);
+      final movies = await _fetchAndCacheMovies.execute(page: state.page + 1, type: type);
       updateStateFromGetMoviesResponse(movies);
     } else {
       state = state.copyWith(

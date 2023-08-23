@@ -8,6 +8,10 @@ import 'package:filmku/features/home/data/datasource/remote/home_remote_data_sou
 import 'package:filmku/features/home/data/datasource/remote/home_remote_datasource.dart';
 import 'package:filmku/features/home/domain/repositories/home_repository.dart';
 import 'package:filmku/features/home/data/repositories/home_repository_impl.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_genre.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_movies.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_cached_genre.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_cached_movies.dart';
 import 'package:filmku/features/movie_detail/data/datasource/local/movie_detail_local_datasource.dart';
 import 'package:filmku/features/movie_detail/data/datasource/local/movie_detail_local_datasource_impl.dart';
 import 'package:filmku/features/movie_detail/data/datasource/remote/movie_detail_remote_data_source.dart';
@@ -83,5 +87,15 @@ void provideRepositories() {
   //Notification
   injector.registerFactory<NotificationRepository>(() => NotificationRepositoryImpl(
       notificationsLocalDataSource: injector.get<NotificationsLocalDataSource>()));
+}
+
+void provideUseCases() {
+  //home
+  injector.registerFactory<FetchAndCacheGenre>(() => FetchAndCacheGenre(homeRepository: injector.get<HomeRepository>()));
+  injector.registerFactory<FetchAndCacheMovies>(() => FetchAndCacheMovies(homeRepository: injector.get<HomeRepository>()));
+  injector.registerFactory<FetchCacheGenres>(() => FetchCacheGenres(homeRepository: injector.get<HomeRepository>()));
+  injector.registerFactory<FetchCachedMovies>(() => FetchCachedMovies(homeRepository: injector.get<HomeRepository>()));
+
+
 }
 

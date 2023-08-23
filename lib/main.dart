@@ -15,6 +15,7 @@ Future<void> runMain() async {
   await initSingletons();
   provideDataSources();
   provideRepositories();
+  provideUseCases();
   // Setting Device Orientation
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
