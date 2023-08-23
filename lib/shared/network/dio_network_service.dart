@@ -1,3 +1,4 @@
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -51,9 +52,9 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
   }
 
   @override
-  Future<Either<AppException, response.Response>> get(String endPoint,
-      {Map<String, dynamic>? queryParams}) {
-    queryParams![Params.apiKey] = apiKey;
+  Future<Either<AppException, response.Response>> get(String endPoint, {Map<String, dynamic>? queryParams}) {
+    queryParams ??= {};
+    queryParams[Params.apiKey]=apiKey;
     final res = handleException(
       () => dio.get(
         endPoint,

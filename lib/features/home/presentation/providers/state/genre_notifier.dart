@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/di/Injector.dart';
-import 'package:filmku/features/home/domain/repository/home_repository.dart';
+import 'package:filmku/features/home/domain/repositories/home_repository.dart';
 import 'package:filmku/models/genres.dart';
 import 'package:filmku/shared/util/app_exception.dart';
 

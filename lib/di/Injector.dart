@@ -1,23 +1,23 @@
 import 'package:filmku/features/bookmarks/data/datasource/local/bookmark_local_datasource.dart';
 import 'package:filmku/features/bookmarks/data/datasource/local/bookmark_local_datasource_impl.dart';
 import 'package:filmku/features/bookmarks/domain/repositories/bookmark_repository.dart';
-import 'package:filmku/features/bookmarks/domain/repositories/bookmark_repository_impl.dart';
+import 'package:filmku/features/bookmarks/data/repositories/bookmark_repository_impl.dart';
 import 'package:filmku/features/home/data/datasource/local/home_local_datasource.dart';
 import 'package:filmku/features/home/data/datasource/local/home_local_datasource_impl.dart';
 import 'package:filmku/features/home/data/datasource/remote/home_remote_data_source.dart';
 import 'package:filmku/features/home/data/datasource/remote/home_remote_datasource.dart';
-import 'package:filmku/features/home/domain/repository/home_repository.dart';
-import 'package:filmku/features/home/domain/repository/home_repository_impl.dart';
+import 'package:filmku/features/home/domain/repositories/home_repository.dart';
+import 'package:filmku/features/home/data/repositories/home_repository_impl.dart';
 import 'package:filmku/features/movie_detail/data/datasource/local/movie_detail_local_datasource.dart';
 import 'package:filmku/features/movie_detail/data/datasource/local/movie_detail_local_datasource_impl.dart';
 import 'package:filmku/features/movie_detail/data/datasource/remote/movie_detail_remote_data_source.dart';
 import 'package:filmku/features/movie_detail/data/datasource/remote/movie_detail_remote_datasource.dart';
-import 'package:filmku/features/movie_detail/domain/repository/movie_detail_repository.dart';
-import 'package:filmku/features/movie_detail/domain/repository/movie_detail_repository_impl.dart';
+import 'package:filmku/features/movie_detail/domain/repositories/movie_detail_repository.dart';
+import 'package:filmku/features/movie_detail/data/repositories//movie_detail_repository_impl.dart';
 import 'package:filmku/features/notifications/data/datasource/local/notifications_local_datasource.dart';
 import 'package:filmku/features/notifications/data/datasource/local/notifications_local_datasource_impl.dart';
 import 'package:filmku/features/notifications/domain/repository/notifications_repository.dart';
-import 'package:filmku/features/notifications/domain/repository/notifications_repository_impl.dart';
+import 'package:filmku/features/notifications/data/repository/notifications_repository_impl.dart';
 import 'package:filmku/shared/local/cache/local_db.dart';
 import 'package:filmku/shared/local/cache/local_db_impl.dart';
 import 'package:filmku/shared/local/shared_prefs/shared_pref.dart';
@@ -84,3 +84,4 @@ void provideRepositories() {
   injector.registerFactory<NotificationRepository>(() => NotificationRepositoryImpl(
       notificationsLocalDataSource: injector.get<NotificationsLocalDataSource>()));
 }
+

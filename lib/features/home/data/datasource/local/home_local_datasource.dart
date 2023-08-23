@@ -9,7 +9,7 @@ abstract class HomeLocalDataSource {
 
   Future<void> cacheGenres({required Genres genres});
 
-  Future<Either<AppException, Movies>> getCacheMovies<Movies>({required String type});
+  Future<Either<AppException, Movies>> getCacheMovies({required String type});
 
   Future<Either<AppException, Genres>> getGenreCache();
 }

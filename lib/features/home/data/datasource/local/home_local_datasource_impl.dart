@@ -52,14 +52,14 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource {
   }
 
   @override
-  Future<Either<AppException, Movies>> getCacheMovies<Movies>(
+  Future<Either<AppException, Movies>> getCacheMovies(
       {required String type}) async {
     final movies = await localDb
         .getDb()
         .movies
         .filter()
         .typeEqualTo(type)
-        .pageEqualTo(0)// Cache on 0 page
+        .pageEqualTo(0) // Cache on 0 page
         .findFirst();
     if (movies == null) {
       return Left(AppException(
@@ -68,7 +68,7 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource {
           identifier: type,
           which: 'cache'));
     } else {
-      return Right(movies as Movies);
+      return Right(movies);
     }
   }
 }

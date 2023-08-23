@@ -6,7 +6,7 @@ import 'package:filmku/features/home/presentation/providers/state/movie_state.da
 import 'package:filmku/models/domain/movies.dart';
 import 'package:filmku/shared/util/app_exception.dart';
 
-import 'package:filmku/features/home/domain/repository/home_repository.dart';
+import 'package:filmku/features/home/domain/repositories/home_repository.dart';
 
 class MovieNotifier extends StateNotifier<MovieState> {
   final HomeRepository homeRepository = injector.get<HomeRepository>();

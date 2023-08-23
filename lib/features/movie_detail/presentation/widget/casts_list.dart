@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/features/movie_detail/presentation/provider/movie_detail_state_notifier.dart';
@@ -11,7 +12,6 @@ class CastsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final castsNotifier = ref.watch(castsStateNotifier(id));
     return castsNotifier.state == CastConcreteState.loading
         ? const Center(child: CircularProgressIndicator())
