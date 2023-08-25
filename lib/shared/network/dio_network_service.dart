@@ -31,10 +31,10 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
       receiveTimeout: const Duration(seconds: 20));
 
   @override
-  String get baseUrl => dotenv.env[NetworkEnv.baseUrl.name] ?? '';
+  String get baseUrl => dotenv.env[NetworkEnv.BASE_URL.name] ?? '';
 
   @override
-  String get apiKey => dotenv.env[NetworkEnv.apiKey.name] ?? '';
+  String get apiKey => dotenv.env[NetworkEnv.API_KEY.name] ?? '';
 
   @override
   Map<String, Object> get headers => {

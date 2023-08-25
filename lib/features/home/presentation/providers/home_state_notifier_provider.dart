@@ -14,4 +14,4 @@ AutoDisposeStateNotifierProvider<MovieNotifier, MovieState>(
 
 final genreStateNotifier =
 AutoDisposeStateNotifierProvider<GenreNotifier, GenreState>(
-        (ref) => GenreNotifier());
+        (ref) => GenreNotifier()..getGenres());

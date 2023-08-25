@@ -10,10 +10,10 @@ import 'package:go_router/go_router.dart';
 class PopularMovies extends ConsumerWidget {
   const PopularMovies({super.key});
 
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final popularMoviesState = ref.watch(popularMoviesStateNotifier);
-
     return popularMoviesState.hasData
         ? SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
