@@ -75,7 +75,7 @@ void notificationBottomSheet(BuildContext context, NotificationState state) {
                     )
             ])),
       );
-      
+
     },
   );
 }
