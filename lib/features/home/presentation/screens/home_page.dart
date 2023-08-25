@@ -1,48 +1,21 @@
-import 'dart:developer';
 
+import 'package:filmku/features/home/presentation/screens/home_page_view.dart';
+import 'package:filmku/features/notifications/presentation/bloc/notification_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:filmku/features/bookmarks/presentation/screens/bookmark_screen.dart';
-import 'package:filmku/features/home/presentation/screens/home_screen.dart';
-import 'package:filmku/shared/widgets/app_bar.dart';
-import 'package:filmku/shared/widgets/app_bottom_navigation.dart';
-import 'package:filmku/shared/widgets/app_drawer.dart';
 
-class HomePage extends StatefulWidget {
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-   const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(),
-      drawer: const AppDrawer(),
-      body:homePageBody() ,
-      bottomNavigationBar:  AppBottomNavigation(currentIndex: _currentIndex,onTapped: _onTabTapped,),
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (BuildContext context) => NotificationBloc()),
+    ], child: const HomePageView()
     );
-  }
-  void _onTabTapped(int index) {
-    setState(() {
-      log('index $index');
-      _currentIndex = index;
-    });
-  }
-
-  Widget homePageBody() {
-    switch (_currentIndex) {
-      case 0:
-        return  const HomeScreen();
-      case 1:
-        return const BookmarkScreen();
-      default:
-        return Container();
-    }
   }
 
 }
+

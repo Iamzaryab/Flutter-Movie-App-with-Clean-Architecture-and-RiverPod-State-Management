@@ -1,27 +1,31 @@
 
+import 'package:filmku/features/movie_detail/presentation/bloc/casts/casts_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:filmku/features/movie_detail/presentation/provider/movie_detail_state_notifier.dart';
-import 'package:filmku/features/movie_detail/presentation/provider/state/casts_state.dart';
 import 'package:filmku/features/movie_detail/presentation/widget/cast_item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CastsList extends ConsumerWidget {
+class CastsList extends StatelessWidget {
   final int id;
 
   const CastsList({Key? key, required this.id}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final castsNotifier = ref.watch(castsStateNotifier(id));
-    return castsNotifier.state == CastConcreteState.loading
-        ? const Center(child: CircularProgressIndicator())
-        : ListView.builder(
-            itemCount: castsNotifier.casts.length,
+  Widget build(BuildContext context) {
+    context.read<CastsBloc>().add(GetCastsEvent(movieId: id));
+    return BlocBuilder<CastsBloc,CastsState>(
+      builder: (context,state){
+        return state.state == CastConcreteState.loading
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+            itemCount: state.casts.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return CastItem(
-                cast: castsNotifier.casts[index],
+                cast: state.casts[index],
               );
             });
+      },
+    );
+
   }
 }

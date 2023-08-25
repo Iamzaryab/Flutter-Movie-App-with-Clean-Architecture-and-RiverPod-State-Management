@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:filmku/features/bookmarks/presentation/bloc/bookmark_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:filmku/app/app_configs.dart';
 import 'package:filmku/app/app_dimens.dart';
-import 'package:filmku/features/bookmarks/presentation/providers/bookmark_notifier_provider.dart';
 import 'package:filmku/models/movie_detail.dart';
 import 'package:filmku/shared/extensions/build_context_extensions.dart';
 import 'package:filmku/shared/widgets/rating_bar.dart';
@@ -54,25 +54,21 @@ class BookmarkCard extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.topRight,
-                    child: Consumer(
-                      builder: (context, ref, child) {
-                        return InkWell(
-                            onTap: () {
-                             ref.read(bookmarkNotifierProvider.notifier).removeBookmark(movieDetail);
-                            },
-                            child: SizedBox(
-                                width: 30,
-                                height: 30,
-                                child: SvgPicture.asset(
-                                  'assets/images/icons/heart_filled.svg',
-                                  colorFilter: const ColorFilter.mode(
-                                      Colors.red, BlendMode.srcIn),
-                                  height: 30.sp,
-                                  width: 30.sp,
-                                )
-                                    ));
-                      },
-                    ),
+                    child: InkWell(
+                        onTap: () {
+                          context.read<BookmarkBloc>().add(RemoveBookmarkEvent(movieDetail: movieDetail));
+                        },
+                        child: SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: SvgPicture.asset(
+                              'assets/images/icons/heart_filled.svg',
+                              colorFilter: const ColorFilter.mode(
+                                  Colors.red, BlendMode.srcIn),
+                              height: 30.sp,
+                              width: 30.sp,
+                            )
+                        )),
                   ),
                   Text(
                     movieDetail.title,

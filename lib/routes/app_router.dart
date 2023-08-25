@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:filmku/features/home/presentation/screens/home_page.dart';
 import 'package:filmku/features/movie_detail/presentation/screen/movie_detail_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'app_router.g.dart';
 
 enum Routes {
   home,
@@ -12,11 +9,11 @@ enum Routes {
   bookmarks,
 }
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
+class AppRouter {
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
-@Riverpod(keepAlive: true)
-GoRouter goRouter(GoRouterRef ref) {
-  return GoRouter(
+  static final GoRouter _router = GoRouter(
     initialLocation: '/',
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: false,
@@ -35,4 +32,6 @@ GoRouter goRouter(GoRouterRef ref) {
               key: state.pageKey, movieId: state.extra as int)),
     ],
   );
+
+  static GoRouter get router => _router;
 }

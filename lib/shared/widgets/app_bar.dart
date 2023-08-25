@@ -1,4 +1,6 @@
+import 'package:filmku/features/notifications/presentation/bloc/notification_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:filmku/app/app_colors.dart';
 import 'package:filmku/app/app_strings.dart';
@@ -32,16 +34,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: IconButton(
-              onPressed: () {
-                notificationBottomSheet(context);
-              },
-              icon:  Icon(
-                Icons.notification_add,
-                color: iconColor,
-              )),
+        BlocBuilder<NotificationBloc,NotificationState>(
+          builder: (context,state){
+           return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  onPressed: () {
+                    notificationBottomSheet(context,state);
+                  },
+                  icon:  Icon(
+                    Icons.notification_add,
+                    color: iconColor,
+                  )),
+            );
+          },
         )
       ],
     );
