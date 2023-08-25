@@ -1,11 +1,12 @@
+import 'package:filmku/features/notifications/domain/use_cases/clear_all_notifications_use_case.dart';
+import 'package:filmku/features/notifications/domain/use_cases/get_all_notifications_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/di/Injector.dart';
-import 'package:filmku/features/notifications/domain/repository/notifications_repository.dart';
 import 'package:filmku/features/notifications/presentation/provider/state/notification_state.dart';
 
 class NotificationNotifier extends StateNotifier<NotificationState> {
-  final NotificationRepository notificationRepository =
-      injector.get<NotificationRepository>();
+  final GetAllNotificationsUseCase _getAllNotificationsUseCase = injector.get<GetAllNotificationsUseCase>();
+  final ClearAllNotificationsUseCase _clearAllNotificationsUseCase = injector.get<ClearAllNotificationsUseCase>();
 
   NotificationNotifier() : super(const NotificationState.initial());
 
@@ -14,7 +15,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
   Future<void> getAllNotifications() async {
     if (isFetching) {
       state = state.copyWith(state: NotificationConcreteState.loading);
-      final response = await notificationRepository.getNotifications();
+      final response = await _getAllNotificationsUseCase.execute();
       response.fold((failure) {
         state = state.copyWith(
           state: NotificationConcreteState.failure,
@@ -36,7 +37,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
   }
 
   Future<void> clearNotifications() async {
-    await notificationRepository.clearNotifications();
+    await _clearAllNotificationsUseCase.execute();
     state = state.copyWith(
       state: NotificationConcreteState.failure,
       message: 'No Notification Available',

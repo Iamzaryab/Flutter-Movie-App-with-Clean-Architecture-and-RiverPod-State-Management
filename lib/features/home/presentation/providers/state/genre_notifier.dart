@@ -1,14 +1,20 @@
 import 'package:dartz/dartz.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_genre_use_case.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_cached_genre_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/di/Injector.dart';
-import 'package:filmku/features/home/domain/repositories/home_repository.dart';
 import 'package:filmku/models/genres.dart';
 import 'package:filmku/shared/util/app_exception.dart';
 
 import 'genre_state.dart';
 
 class GenreNotifier extends StateNotifier<GenreState> {
-  final HomeRepository homeRepository = injector.get<HomeRepository>();
+  // final HomeRepository homeRepository = injector.get<HomeRepository>();
+
+  final FetchAndCacheGenreUseCase _fetchAndCacheGenreUseCase =
+      injector.get<FetchAndCacheGenreUseCase>();
+  final FetchCacheGenresUseCase _fetchCacheGenresUseCase =
+      injector.get<FetchCacheGenresUseCase>();
 
   GenreNotifier() : super(const GenreState.initial());
 
@@ -20,11 +26,10 @@ class GenreNotifier extends StateNotifier<GenreState> {
         state: GenreConcreteState.loading,
         isLoading: true,
       );
-      final cached = await homeRepository.fetchCachedGenres();
+      final cached = await _fetchCacheGenresUseCase.execute();
       cached.fold((failure) async {
         state = state.copyWith(isLoading: true);
-        final response =
-            await homeRepository.fetchAndCacheGenres();
+        final response = await _fetchAndCacheGenreUseCase.execute();
         updateStateFromGenreResponse(response);
       }, (success) {
         updateStateFromGenreResponse(cached);

@@ -1,17 +1,20 @@
 import 'package:dartz/dartz.dart';
+import 'package:filmku/features/bookmarks/domain/use_cases/get_bookmarks_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/di/Injector.dart';
-import 'package:filmku/features/bookmarks/domain/repositories/bookmark_repository.dart';
 import 'package:filmku/features/bookmarks/presentation/providers/state/bookmark_state.dart';
 import 'package:filmku/models/movie_detail.dart';
 import 'package:filmku/shared/util/app_exception.dart';
 
+import '../../../../movie_detail/domain/use_cases/remove_bookmark_use_case.dart';
+
 class BookmarkNotifier extends StateNotifier<BookmarkState> {
-  final BookmarkRepository bookmarkRepository =
-      injector.get<BookmarkRepository>();
+  final GetBookmarksUseCase _getBookmarkUseCase =
+      injector.get<GetBookmarksUseCase>();
+  final RemoveBookmarkUseCase _removeBookmarkUseCase =
+      injector.get<RemoveBookmarkUseCase>();
 
   BookmarkNotifier() : super(const BookmarkState.initial());
-
 
   bool get isFetching => state.state != BookmarkConcreteState.loading;
 
@@ -21,13 +24,13 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
         state: BookmarkConcreteState.loading,
         isLoading: true,
       );
-      final bookmarks = await bookmarkRepository.getBookmarks();
+      final bookmarks = await _getBookmarkUseCase.execute();
       updateStateFromBookmarksResponse(bookmarks);
     }
   }
 
   void removeBookmark(MovieDetail movieDetail) {
-    bookmarkRepository.removeBookmark(movieDetail);
+    _removeBookmarkUseCase.execute(movieDetail);
     final bookmarks = state.bookmarks;
     bookmarks.remove(movieDetail);
     state = state.copyWith(

@@ -1,15 +1,16 @@
 import 'package:dartz/dartz.dart';
+import 'package:filmku/features/movie_detail/domain/use_cases/get_casts_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/di/Injector.dart';
-import 'package:filmku/features/movie_detail/domain/repositories/movie_detail_repository.dart';
 import 'package:filmku/features/movie_detail/presentation/provider/state/casts_state.dart';
 import 'package:filmku/models/cast.dart';
 import 'package:filmku/models/response/casts_response.dart';
 import 'package:filmku/shared/util/app_exception.dart';
 
 class CastsNotifier extends StateNotifier<CastsState> {
-  final MovieDetailRepository movieDetailRepository =
-      injector.get<MovieDetailRepository>();
+
+  final GetCastsUseCase _getCastsUseCase = injector.get<GetCastsUseCase>();
+
 
   CastsNotifier() : super(const CastsState.initial());
 
@@ -21,8 +22,8 @@ class CastsNotifier extends StateNotifier<CastsState> {
         state: CastConcreteState.loading,
         isLoading: true,
       );
-      final response = await movieDetailRepository.getCasts(
-          id: id);
+      final response = await _getCastsUseCase.execute(
+          movieId: id);
       updateStateFromGetCastsResponse(response);
     }
   }
