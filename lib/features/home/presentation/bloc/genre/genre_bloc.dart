@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:filmku/di/Injector.dart';
-import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_genre.dart';
-import 'package:filmku/features/home/domain/use_cases/fetch_cached_genre.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_genre_use_case.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_cached_genre_use_case.dart';
 import 'package:filmku/features/home/presentation/bloc/genre/genre_event.dart';
 import 'package:filmku/features/home/presentation/bloc/genre/genre_state.dart';
 import 'package:filmku/models/genres.dart';
@@ -9,9 +9,9 @@ import 'package:filmku/shared/util/app_exception.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GenreBloc extends Bloc<GenreEvent, GenreState> {
-  final FetchCacheGenres _fetchCacheGenre = injector.get<FetchCacheGenres>();
-  final FetchAndCacheGenre _fetchAndCacheGenre =
-      injector.get<FetchAndCacheGenre>();
+  final FetchCacheGenresUseCase _fetchCacheGenre = injector.get<FetchCacheGenresUseCase>();
+  final FetchAndCacheGenreUseCase _fetchAndCacheGenre =
+      injector.get<FetchAndCacheGenreUseCase>();
 
   GenreBloc() : super(const GenreState.initial()) {
     on<GenreEvent>(getGenres);

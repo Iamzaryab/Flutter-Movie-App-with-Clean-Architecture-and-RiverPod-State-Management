@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:filmku/di/Injector.dart';
-import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_movies.dart';
-import 'package:filmku/features/home/domain/use_cases/fetch_cached_movies.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_movies_use_case.dart';
+import 'package:filmku/features/home/domain/use_cases/fetch_cached_movies_use_case.dart';
 import 'package:filmku/models/domain/movies.dart';
 import 'package:filmku/models/movie.dart';
 import 'package:filmku/shared/util/app_exception.dart';
@@ -13,10 +13,10 @@ part 'movie_event.dart';
 part 'movie_state.dart';
 
 sealed class MovieBloc extends Bloc<MovieEvent, MovieState> {
-  final FetchAndCacheMovies _fetchAndCacheMovies =
-  injector.get<FetchAndCacheMovies>();
-  final FetchCachedMovies _fetchCachedMovies =
-  injector.get<FetchCachedMovies>();
+  final FetchAndCacheMoviesUseCase _fetchAndCacheMovies =
+  injector.get<FetchAndCacheMoviesUseCase>();
+  final FetchCachedMoviesUseCase _fetchCachedMovies =
+  injector.get<FetchCachedMoviesUseCase>();
 
   bool get isFetching =>
       state.state != MoviesConcreteState.loading &&

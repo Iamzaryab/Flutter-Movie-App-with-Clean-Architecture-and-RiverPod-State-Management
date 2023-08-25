@@ -20,4 +20,4 @@ abstract class NetworkService {
       {Map<String, dynamic>? data});
 }
 
-enum NetworkEnv { baseUrl, apiKey }
+enum NetworkEnv { BASE_URL, API_KEY }
