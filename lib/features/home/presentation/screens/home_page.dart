@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(),
       body:homePageBody() ,
       bottomNavigationBar:  AppBottomNavigation(currentIndex: _currentIndex,onTapped: _onTabTapped,),
     );
