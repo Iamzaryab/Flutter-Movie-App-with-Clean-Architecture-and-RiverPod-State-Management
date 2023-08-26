@@ -2,6 +2,9 @@
 
 ![Flutter Movie Application](/screenshots/screenshots.png)
 
+[Watch the Video Demo](https://youtu.be/i4VrO4GgkuM?si=pTsVLC43wwNdvo0E)
+
+
 FilmKu is an open-source Flutter movie application that exemplifies clean architecture principles while leveraging the power of both [Riverpod](https://pub.dev/packages/flutter_bloc) and [Bloc](https://pub.dev/packages/flutter_bloc) for state management. The app utilizes the [Movies Database API](https://developer.themoviedb.org/docs) to provide users with an immersive movie discovery experience. With dependency injection powered by [get_it](https://pub.dev/packages/get_it), remote API calls managed by [dio](https://pub.dev/packages/dio), and local data storage utilizing [Isar](https://pub.dev/packages/isar), FilmKu offers a comprehensive solution for movie enthusiasts.
 
 [//]: # (Insert Getting Started Hyperlink Here)
