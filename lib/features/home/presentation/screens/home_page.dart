@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider(create: (BuildContext context) => NotificationBloc()),
+      BlocProvider(create: (BuildContext context) => NotificationBloc()..add(GetAllNotificationsEvent())),
     ], child: const HomePageView()
     );
   }

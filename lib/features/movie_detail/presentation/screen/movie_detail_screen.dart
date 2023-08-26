@@ -15,7 +15,7 @@ class MovieDetailScreen extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (BuildContext context) => MovieDetailBloc()),
-          BlocProvider(create: (BuildContext context) => CastsBloc())
+          BlocProvider(create: (BuildContext context) => CastsBloc()..add(GetCastsEvent(movieId: movieId)))
         ],
         child:  MovieDetailScreenView(movieId: movieId));
   }

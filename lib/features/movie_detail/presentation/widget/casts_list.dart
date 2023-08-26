@@ -11,7 +11,6 @@ class CastsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<CastsBloc>().add(GetCastsEvent(movieId: id));
     return BlocBuilder<CastsBloc,CastsState>(
       builder: (context,state){
         return state.state == CastConcreteState.loading

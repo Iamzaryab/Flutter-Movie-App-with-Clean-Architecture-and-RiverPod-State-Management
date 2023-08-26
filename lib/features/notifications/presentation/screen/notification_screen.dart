@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void notificationBottomSheet(BuildContext context, NotificationState state) {
-  context.read<NotificationBloc>().add(const GetAllNotificationsEvent());
   showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
