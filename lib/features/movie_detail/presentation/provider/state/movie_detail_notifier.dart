@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:filmku/features/bookmarks/domain/use_cases/remove_bookmarks_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/add_bookmark_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/get_movie_details_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/is_bookmark_use_case.dart';
+import 'package:filmku/features/movie_detail/domain/use_cases/remove_bookmark_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:filmku/di/Injector.dart';
 import 'package:filmku/features/movie_detail/presentation/provider/state/movie_detail_state.dart';
