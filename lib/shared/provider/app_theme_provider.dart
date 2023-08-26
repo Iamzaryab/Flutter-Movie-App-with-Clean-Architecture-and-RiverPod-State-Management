@@ -52,13 +52,4 @@ class AppThemeChangeNotifier extends StateNotifier<ThemeState> {
     }
   }
 
-  Future<String> getCurrentThemeValue() async {
-    final String? theme =
-        await sharedPref.get(AppConstants.CURRENT_THEME) as String?;
-    if (theme == null || theme == 'default') {
-      return 'default';
-    } else {
-      return theme;
-    }
-  }
 }

@@ -86,17 +86,3 @@ class AppDrawer extends ConsumerWidget {
   }
 }
 
-// ListTile(
-// title: Text('Item 1'),
-// onTap: () {
-// ref.read(appThemeProvider.notifier).toggleTheme();
-// // Handle item 1 tap
-// },
-// ),
-// ListTile(
-// title: Text('Item 2'),
-// onTap: () {
-// ref.read(appThemeProvider.notifier).setDefaultTheme();
-// // Handle item 2 tap
-// },
-// ),
