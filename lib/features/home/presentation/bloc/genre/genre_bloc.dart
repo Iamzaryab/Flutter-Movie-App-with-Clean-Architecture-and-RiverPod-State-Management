@@ -14,11 +14,12 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
       injector.get<FetchAndCacheGenreUseCase>();
 
   GenreBloc() : super(const GenreState.initial()) {
-    on<GenreEvent>(getGenres);
+    on<GetGenreLocalEvent>(_getGenreLocal);
+    on<GetGenreRemoteEvent>(_getGenreRemote);
   }
   bool get isFetching => state.state !=GenreConcreteState.loading;
 
-  Future<void> getGenres(GenreEvent event, Emitter<GenreState> emit) async {
+  Future<void> _getGenreLocal(GetGenreLocalEvent event, Emitter<GenreState> emit) async {
 
     if (isFetching) {
       emit(state.copyWith(
@@ -26,13 +27,26 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
         isLoading: true,
       ));
       final cached = await _fetchCacheGenre.execute();
-      cached.fold((failure) async {
-        emit(state.copyWith(isLoading: true));
-        final response = await _fetchAndCacheGenre.execute();
-        updateStateFromGenreResponse(response, emit);
+      cached.fold((failure)  {
+        emit(state.copyWith(
+          state: GenreConcreteState.failure,
+          isLoading: false,
+        ));
+        add(const GetGenreRemoteEvent());
       }, (success) {
         updateStateFromGenreResponse(cached, emit);
       });
+    }
+  }
+  Future<void> _getGenreRemote(GetGenreRemoteEvent event, Emitter<GenreState> emit) async {
+
+    if (isFetching) {
+      emit(state.copyWith(
+        state: GenreConcreteState.loading,
+        isLoading: true,
+      ));
+      final response = await _fetchAndCacheGenre.execute();
+      updateStateFromGenreResponse(response, emit);
     }
   }
 

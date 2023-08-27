@@ -7,6 +7,10 @@ sealed class GenreEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-final class GetGenreEvent extends GenreEvent {
-  const GetGenreEvent();
+final class GetGenreLocalEvent extends GenreEvent {
+  const GetGenreLocalEvent();
+}
+
+final class GetGenreRemoteEvent extends GenreEvent {
+  const GetGenreRemoteEvent();
 }
