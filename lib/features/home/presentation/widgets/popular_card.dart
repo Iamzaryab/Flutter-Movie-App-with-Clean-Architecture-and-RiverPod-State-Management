@@ -19,7 +19,7 @@ class PopularMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<GenreBloc>().add(const GetGenreEvent());
+    context.read<GenreBloc>().add(const GetGenreLocalEvent());
     return Container(
       padding: EdgeInsets.only(
           top: AppDimens.p8, left: AppDimens.p18, right: AppDimens.p18),
