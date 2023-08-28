@@ -1,4 +1,5 @@
 import 'package:filmku/features/home/presentation/bloc/movie/movie_bloc.dart';
+import 'package:filmku/shared/widgets/animated_scroll_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:filmku/app/app_dimens.dart';
 import 'package:filmku/features/home/presentation/widgets/now_showing_card.dart';
@@ -27,12 +28,14 @@ class NowShowingMovies extends StatelessWidget {
                   itemBuilder: (context, index) {
                     if (index < state.movies.length) {
                       final movie = state.movies[index];
-                      return GestureDetector(
-                          onTap: () {
-                            context.pushNamed(Routes.movieDetail.name,
-                                extra: movie.id);
-                          },
-                          child: NowShowingMovieCard(movie: movie));
+                      return AnimatedScrollViewItem(
+                        child: GestureDetector(
+                            onTap: () {
+                              context.pushNamed(Routes.movieDetail.name,
+                                  extra: movie.id);
+                            },
+                            child: NowShowingMovieCard(movie: movie)),
+                      );
                     } else {
                       return const Center(child: CircularProgressIndicator());
                     }
