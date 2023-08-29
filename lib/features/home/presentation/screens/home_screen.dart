@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
               create: (BuildContext context) => GetNowShowingMovieBloc()),
           BlocProvider<GetPopularMovieBloc>(
               create: (BuildContext context) => GetPopularMovieBloc()),
-          BlocProvider<GenreBloc>(create: (BuildContext context) => GenreBloc())
+          BlocProvider<GenreBloc>(create: ( context) => GenreBloc())
         ],
         child: const HomeScreenView(),
       ),

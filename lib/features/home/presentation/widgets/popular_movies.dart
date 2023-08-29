@@ -15,7 +15,6 @@ class PopularMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GetPopularMovieBloc, MovieState>(
       builder: (context, state) {
-
         return state.hasData
             ? SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
