@@ -26,6 +26,8 @@ class PopularMovie extends StatelessWidget {
     return OpenContainer(
         // transitionDuration: const Duration(seconds: 5),
         closedColor: context.theme.scaffoldBackgroundColor,
+        middleColor: context.theme.scaffoldBackgroundColor,
+        openColor: context.theme.scaffoldBackgroundColor,
         closedBuilder: (context, void Function() action) {
           return Container(
             padding: EdgeInsets.only(
@@ -101,7 +103,8 @@ class PopularMovie extends StatelessWidget {
           );
         },
         openBuilder: (context, void Function({Object? returnValue}) action) {
-          return SwipeToDismissWrap(child: MovieDetailScreen(movieId: movie.id));
+          return SwipeToDismissWrap(
+              child: MovieDetailScreen(movieId: movie.id));
         });
   }
 }

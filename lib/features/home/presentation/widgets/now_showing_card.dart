@@ -23,6 +23,8 @@ class NowShowingMovieCard extends StatelessWidget {
         // transitionDuration: const Duration(seconds: 5),
         closedColor: context.theme.scaffoldBackgroundColor,
         openColor: context.theme.scaffoldBackgroundColor,
+        middleColor: context.theme.scaffoldBackgroundColor,
+
         closedBuilder: (BuildContext context, void Function() action) {
           return SizedBox(
             width: AppDimens.nowShowingCardWidth,

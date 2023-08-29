@@ -26,19 +26,23 @@ class _MovieDetailScreenViewState extends State<MovieDetailScreenView> {
         .read<MovieDetailBloc>()
         .add(IsBookmarkedEvent(movieId: widget.movieId));
   }
+
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<MovieDetailBloc, MovieDetailState>(
       builder: (context, state) {
         return Scaffold(
-            body: state.state == MovieDetailConcreteState.loading
-                ? const Center(child: CircularProgressIndicator())
-                : CustomScrollView(slivers: [
-                    MovieDetailHeader(movieDetail: state.movieDetail),
-                    MovieDetailBody(movieDetail: state.movieDetail)
-                  ]));
+            body: CustomScrollView(slivers: [
+          MovieDetailHeader(movieDetail: state.movieDetail),
+          MovieDetailBody(movieDetail: state.movieDetail)
+        ]));
       },
     );
   }
 }
+// state.state == MovieDetailConcreteState.loading
+// ? const Center(child: CircularProgressIndicator())
+//     : CustomScrollView(slivers: [
+// MovieDetailHeader(movieDetail: state.movieDetail),
+// MovieDetailBody(movieDetail: state.movieDetail)
+// ]));

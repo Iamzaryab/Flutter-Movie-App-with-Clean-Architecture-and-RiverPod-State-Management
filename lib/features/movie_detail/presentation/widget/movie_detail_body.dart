@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:filmku/features/movie_detail/presentation/bloc/movie_detail/movie_detail_bloc.dart';
+import 'package:filmku/shared/widgets/heart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +12,6 @@ import 'package:filmku/models/movie_detail.dart';
 import 'package:filmku/shared/extensions/build_context_extensions.dart';
 import 'package:filmku/shared/widgets/genre_chip.dart';
 import 'package:filmku/shared/widgets/rating_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class MovieDetailBody extends StatelessWidget {
   final MovieDetail movieDetail;
@@ -44,37 +44,20 @@ class MovieDetailBody extends StatelessWidget {
               ),
               BlocBuilder<MovieDetailBloc, MovieDetailState>(
                   builder: (context, state) {
-                log(state.isBookmarked.toString());
-                return InkWell(
-                    onTap: () {
-                      if (state.isBookmarked) {
-                        context
-                            .read<MovieDetailBloc>()
-                            .add(RemoveBookmarkEvent(movieDetail: movieDetail));
-                      } else {
-                        context
-                            .read<MovieDetailBloc>()
-                            .add(AddBookmarkEvent(movieDetail: movieDetail));
-                      }
-                    },
-                    child: SizedBox(
-                        width: 30,
-                        height: 30,
-                        child: state.isBookmarked
-                            ? SvgPicture.asset(
-                                'assets/images/icons/heart_filled.svg',
-                                colorFilter: const ColorFilter.mode(
-                                    Colors.red, BlendMode.srcIn),
-                                height: 30.sp,
-                                width: 30.sp,
-                              )
-                            : SvgPicture.asset(
-                                'assets/images/icons/heart_outlined.svg',
-                                colorFilter: const ColorFilter.mode(
-                                    Colors.red, BlendMode.srcIn),
-                                height: 30.sp,
-                                width: 30.sp,
-                              )));
+                return HeartButton(
+                  isBookmarked: state.isBookmarked,
+                  onBtnPressed: () {
+                    if (state.isBookmarked) {
+                      context
+                          .read<MovieDetailBloc>()
+                          .add(RemoveBookmarkEvent(movieDetail: movieDetail));
+                    } else {
+                      context
+                          .read<MovieDetailBloc>()
+                          .add(AddBookmarkEvent(movieDetail: movieDetail));
+                    }
+                  },
+                );
               })
             ],
           ),
