@@ -91,8 +91,8 @@ To set up the FilmKu Flutter Movie Application on your local machine, follow the
 2. Create a `.env` file in the root directory of the project. Add the following lines, replacing `ADD YOUR API KEY` with your actual API key. You can generate your API key from [here](https://www.themoviedb.org/settings/api):
 
    ```
-   BASEURL=https://api.themoviedb.org/3/
-   APIKEY=ADD YOUR API KEY
+   BASE_URL=https://api.themoviedb.org/3/
+   API_KEY=ADD YOUR API KEY
    ```
 3. Choose the state management approach:
 - For Riverpod implementation, stay on the `master` branch.
