@@ -9,10 +9,8 @@ class MovieDetailShimmer extends StatelessWidget {
     return Shimmer.fromColors(
         baseColor: Colors.grey.shade400,
         highlightColor: Colors.grey.shade300,
-        child: Column(
-
-          children: [
-          ],
+        child: const Column(
+          children: [],
         ));
   }
 }

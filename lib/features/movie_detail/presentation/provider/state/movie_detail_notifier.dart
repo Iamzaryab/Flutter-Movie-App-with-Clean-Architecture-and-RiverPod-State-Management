@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
+import 'package:filmku/di/injector.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/add_bookmark_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/get_movie_details_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/is_bookmark_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/remove_bookmark_use_case.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:filmku/di/Injector.dart';
 import 'package:filmku/features/movie_detail/presentation/provider/state/movie_detail_state.dart';
 import 'package:filmku/models/movie_detail.dart';
 import 'package:filmku/shared/util/app_exception.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MovieDetailNotifier extends StateNotifier<MovieDetailState> {
   final AddBookmarkUseCase _addBookmarkUseCase =
@@ -25,12 +25,12 @@ class MovieDetailNotifier extends StateNotifier<MovieDetailState> {
   bool get isFetching => state.state != MovieDetailConcreteState.loading;
 
   Future<void> bookmarkMovieDetail(MovieDetail movieDetail) async {
-    final response = await _addBookmarkUseCase.execute(movieDetail);
+    await _addBookmarkUseCase.execute(movieDetail);
     state = state.copyWith(isBookmarked: true);
   }
 
   Future<void> removeBookmark(MovieDetail movieDetail) async {
-    final response = await _removeBookmarkUseCase.execute(movieDetail);
+    await _removeBookmarkUseCase.execute(movieDetail);
     state = state.copyWith(isBookmarked: false);
   }
 

@@ -30,12 +30,12 @@ class DrawerItem extends StatelessWidget {
               asset,
               height: 20,
               width: 20,
-              color: context.theme.primaryColor,
+              // color: context.theme.primaryColor,
             ),
             title: Text(
               title,
-              style:
-                  context.textTheme.bodyMedium!.copyWith(color: context.theme.primaryColor),
+              style: context.textTheme.bodyMedium!
+                  .copyWith(color: context.theme.primaryColor),
             ),
             trailing: isSelected
                 ? const Icon(

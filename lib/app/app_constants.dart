@@ -6,7 +6,6 @@ class AppConstants {
   static const String RATING = 'Rating';
   static const String DESCRIPTION = 'Description';
   static const String CASTS = 'Casts';
-
   //App
-  static const String CURRENT_THEME = 'theme';
+  static const String currentTheme = 'theme';
 }

@@ -1,11 +1,11 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:filmku/app/app_globals.dart';
 import 'package:filmku/models/response/response.dart' as response;
 import 'package:filmku/shared/network/network_service.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import '../util/app_exception.dart';
 import 'exception/mixin/network_handler_mixin.dart';
 import 'network_values.dart';
@@ -31,10 +31,10 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
       receiveTimeout: const Duration(seconds: 20));
 
   @override
-  String get baseUrl => dotenv.env[NetworkEnv.BASE_URL.name] ?? '';
+  String get baseUrl => dotenv.env[NetworkEnv.baseUrl.name] ?? '';
 
   @override
-  String get apiKey => dotenv.env[NetworkEnv.API_KEY.name] ?? '';
+  String get apiKey => dotenv.env[NetworkEnv.apiKey.name] ?? '';
 
   @override
   Map<String, Object> get headers => {
@@ -52,9 +52,10 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
   }
 
   @override
-  Future<Either<AppException, response.Response>> get(String endPoint, {Map<String, dynamic>? queryParams}) {
+  Future<Either<AppException, response.Response>> get(String endPoint,
+      {Map<String, dynamic>? queryParams}) {
     queryParams ??= {};
-    queryParams[Params.apiKey]=apiKey;
+    queryParams[Params.apiKey] = apiKey;
     final res = handleException(
       () => dio.get(
         endPoint,

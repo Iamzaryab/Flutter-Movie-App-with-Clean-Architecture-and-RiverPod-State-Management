@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:filmku/di/injector.dart';
 import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_genre_use_case.dart';
 import 'package:filmku/features/home/domain/use_cases/fetch_cached_genre_use_case.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:filmku/di/Injector.dart';
 import 'package:filmku/models/genres.dart';
 import 'package:filmku/shared/util/app_exception.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'genre_state.dart';
 

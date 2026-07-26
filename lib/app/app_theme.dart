@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:filmku/app/app_colors.dart';
 import 'package:filmku/app/app_text_styles.dart';
 import 'package:filmku/app/app_text_theme.dart';
+import 'package:flutter/material.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
@@ -12,7 +12,7 @@ class AppTheme {
             primary: AppColors.primaryLight,
             secondary: AppColors.secondaryLight,
             error: AppColors.error,
-            background: AppColors.white),
+            surface: AppColors.white),
         scaffoldBackgroundColor: AppColors.white,
         primaryTextTheme: AppTextTheme.lightTextTheme,
         textTheme: AppTextTheme.lightTextTheme,
@@ -39,13 +39,12 @@ class AppTheme {
             primary: AppColors.primaryDark,
             secondary: AppColors.secondaryDark,
             error: AppColors.error,
-            background: AppColors.backgroundDark),
+            surface: AppColors.backgroundDark),
         scaffoldBackgroundColor: AppColors.backgroundDark,
         primaryTextTheme: AppTextTheme.darkTextTheme,
         textTheme: AppTextTheme.darkTextTheme,
         appBarTheme: AppBarTheme(
             elevation: 0,
-
             backgroundColor: AppColors.backgroundDark,
             titleTextStyle: AppTextStyles.titleMedium),
         bottomSheetTheme: const BottomSheetThemeData(

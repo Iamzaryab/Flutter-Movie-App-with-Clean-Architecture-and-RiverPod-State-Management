@@ -1,7 +1,3 @@
-
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:filmku/app/app_constants.dart';
 import 'package:filmku/app/app_dimens.dart';
 import 'package:filmku/features/movie_detail/presentation/provider/movie_detail_state_notifier.dart';
@@ -10,8 +6,10 @@ import 'package:filmku/models/movie_detail.dart';
 import 'package:filmku/shared/extensions/build_context_extensions.dart';
 import 'package:filmku/shared/widgets/genre_chip.dart';
 import 'package:filmku/shared/widgets/rating_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 
 class MovieDetailBody extends StatelessWidget {
   final MovieDetail movieDetail;
@@ -44,8 +42,7 @@ class MovieDetailBody extends StatelessWidget {
               ),
               Consumer(
                 builder: (context, ref, child) {
-                  final bookmarkNotifier =
-                      ref.watch(movieDetailStateNotifier);
+                  final bookmarkNotifier = ref.watch(movieDetailStateNotifier);
                   return InkWell(
                       onTap: () {
                         if (bookmarkNotifier.isBookmarked) {

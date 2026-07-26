@@ -1,12 +1,14 @@
+import 'package:filmku/di/injector.dart';
 import 'package:filmku/features/notifications/domain/use_cases/clear_all_notifications_use_case.dart';
 import 'package:filmku/features/notifications/domain/use_cases/get_all_notifications_use_case.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:filmku/di/Injector.dart';
 import 'package:filmku/features/notifications/presentation/provider/state/notification_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NotificationNotifier extends StateNotifier<NotificationState> {
-  final GetAllNotificationsUseCase _getAllNotificationsUseCase = injector.get<GetAllNotificationsUseCase>();
-  final ClearAllNotificationsUseCase _clearAllNotificationsUseCase = injector.get<ClearAllNotificationsUseCase>();
+  final GetAllNotificationsUseCase _getAllNotificationsUseCase =
+      injector.get<GetAllNotificationsUseCase>();
+  final ClearAllNotificationsUseCase _clearAllNotificationsUseCase =
+      injector.get<ClearAllNotificationsUseCase>();
 
   NotificationNotifier() : super(const NotificationState.initial());
 

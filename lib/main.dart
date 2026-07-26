@@ -1,11 +1,11 @@
+import 'package:filmku/core/observers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:filmku/core/observers.dart';
 
 import 'core/app.dart';
-import 'di/Injector.dart';
+import 'di/injector.dart';
 
 void main() => runMain();
 

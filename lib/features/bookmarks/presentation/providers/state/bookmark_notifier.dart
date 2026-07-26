@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:filmku/di/injector.dart';
 import 'package:filmku/features/bookmarks/domain/use_cases/get_bookmarks_use_case.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:filmku/di/Injector.dart';
 import 'package:filmku/features/bookmarks/presentation/providers/state/bookmark_state.dart';
 import 'package:filmku/models/movie_detail.dart';
 import 'package:filmku/shared/util/app_exception.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../movie_detail/domain/use_cases/remove_bookmark_use_case.dart';
 

@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:filmku/di/injector.dart';
 import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_movies_use_case.dart';
 import 'package:filmku/features/home/domain/use_cases/fetch_cached_movies_use_case.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:filmku/di/Injector.dart';
 import 'package:filmku/features/home/presentation/providers/state/movie_state.dart';
 import 'package:filmku/models/domain/movies.dart';
 import 'package:filmku/shared/util/app_exception.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MovieNotifier extends StateNotifier<MovieState> {
   final FetchAndCacheMoviesUseCase _fetchAndCacheMoviesUseCase =

@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:filmku/shared/widgets/message_widget.dart';
+import 'package:flutter/material.dart';
 
 class MessageQueueWrapper extends StatelessWidget {
   final Widget child;
 
-  MessageQueueWrapper({super.key, required this.child});
+  const MessageQueueWrapper({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

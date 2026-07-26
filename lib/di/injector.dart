@@ -1,14 +1,14 @@
 import 'package:filmku/features/bookmarks/data/datasource/local/bookmark_local_datasource.dart';
 import 'package:filmku/features/bookmarks/data/datasource/local/bookmark_local_datasource_impl.dart';
-import 'package:filmku/features/bookmarks/domain/repositories/bookmark_repository.dart';
 import 'package:filmku/features/bookmarks/data/repositories/bookmark_repository_impl.dart';
+import 'package:filmku/features/bookmarks/domain/repositories/bookmark_repository.dart';
 import 'package:filmku/features/bookmarks/domain/use_cases/get_bookmarks_use_case.dart';
 import 'package:filmku/features/home/data/datasource/local/home_local_datasource.dart';
 import 'package:filmku/features/home/data/datasource/local/home_local_datasource_impl.dart';
 import 'package:filmku/features/home/data/datasource/remote/home_remote_data_source.dart';
 import 'package:filmku/features/home/data/datasource/remote/home_remote_datasource.dart';
-import 'package:filmku/features/home/domain/repositories/home_repository.dart';
 import 'package:filmku/features/home/data/repositories/home_repository_impl.dart';
+import 'package:filmku/features/home/domain/repositories/home_repository.dart';
 import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_genre_use_case.dart';
 import 'package:filmku/features/home/domain/use_cases/fetch_and_cache_movies_use_case.dart';
 import 'package:filmku/features/home/domain/use_cases/fetch_cached_genre_use_case.dart';
@@ -17,17 +17,19 @@ import 'package:filmku/features/movie_detail/data/datasource/local/movie_detail_
 import 'package:filmku/features/movie_detail/data/datasource/local/movie_detail_local_datasource_impl.dart';
 import 'package:filmku/features/movie_detail/data/datasource/remote/movie_detail_remote_data_source.dart';
 import 'package:filmku/features/movie_detail/data/datasource/remote/movie_detail_remote_datasource.dart';
-import 'package:filmku/features/movie_detail/domain/repositories/movie_detail_repository.dart';
 import 'package:filmku/features/movie_detail/data/repositories//movie_detail_repository_impl.dart';
+import 'package:filmku/features/movie_detail/domain/repositories/movie_detail_repository.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/add_bookmark_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/get_casts_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/get_movie_details_use_case.dart';
 import 'package:filmku/features/movie_detail/domain/use_cases/is_bookmark_use_case.dart';
+import 'package:filmku/features/movie_detail/domain/use_cases/remove_bookmark_use_case.dart';
 import 'package:filmku/features/notifications/data/datasource/local/notifications_local_datasource.dart';
 import 'package:filmku/features/notifications/data/datasource/local/notifications_local_datasource_impl.dart';
-import 'package:filmku/features/notifications/domain/repository/notifications_repository.dart';
 import 'package:filmku/features/notifications/data/repository/notifications_repository_impl.dart';
+import 'package:filmku/features/notifications/domain/repository/notifications_repository.dart';
 import 'package:filmku/features/notifications/domain/use_cases/clear_all_notifications_use_case.dart';
+import 'package:filmku/features/notifications/domain/use_cases/get_all_notifications_use_case.dart';
 import 'package:filmku/shared/local/cache/local_db.dart';
 import 'package:filmku/shared/local/cache/local_db_impl.dart';
 import 'package:filmku/shared/local/shared_prefs/shared_pref.dart';
@@ -35,9 +37,6 @@ import 'package:filmku/shared/local/shared_prefs/shared_pref_impl.dart';
 import 'package:filmku/shared/network/dio_network_service.dart';
 import 'package:filmku/shared/network/network_service.dart';
 import 'package:get_it/get_it.dart';
-
-import '../features/movie_detail/domain/use_cases/remove_bookmark_use_case.dart';
-import '../features/notifications/domain/use_cases/get_all_notifications_use_case.dart';
 
 final injector = GetIt.instance;
 
@@ -69,10 +68,9 @@ void provideDataSources() {
   injector.registerFactory<BookmarkLocalDataSource>(
       () => BookmarkLocalDataSourceImpl(localDb: injector.get<LocalDb>()));
 
-
   //Notification
   injector.registerFactory<NotificationsLocalDataSource>(
-          () => NotificationsLocalDataSourceImpl(localDb: injector.get<LocalDb>()));
+      () => NotificationsLocalDataSourceImpl(localDb: injector.get<LocalDb>()));
 }
 
 void provideRepositories() {
@@ -92,36 +90,48 @@ void provideRepositories() {
   injector.registerFactory<BookmarkRepository>(() => BookmarkRepositoryImpl(
       bookmarkLocalDataSource: injector.get<BookmarkLocalDataSource>()));
 
-
   //Notification
-  injector.registerFactory<NotificationRepository>(() => NotificationRepositoryImpl(
-      notificationsLocalDataSource: injector.get<NotificationsLocalDataSource>()));
+  injector.registerFactory<NotificationRepository>(() =>
+      NotificationRepositoryImpl(
+          notificationsLocalDataSource:
+              injector.get<NotificationsLocalDataSource>()));
 }
 
 void provideUseCases() {
   //home
-  injector.registerFactory<FetchAndCacheGenreUseCase>(() => FetchAndCacheGenreUseCase(homeRepository: injector.get<HomeRepository>()));
-  injector.registerFactory<FetchAndCacheMoviesUseCase>(() => FetchAndCacheMoviesUseCase(homeRepository: injector.get<HomeRepository>()));
-  injector.registerFactory<FetchCacheGenresUseCase>(() => FetchCacheGenresUseCase(homeRepository: injector.get<HomeRepository>()));
-  injector.registerFactory<FetchCachedMoviesUseCase>(() => FetchCachedMoviesUseCase(homeRepository: injector.get<HomeRepository>()));
-
+  injector.registerFactory<FetchAndCacheGenreUseCase>(() =>
+      FetchAndCacheGenreUseCase(
+          homeRepository: injector.get<HomeRepository>()));
+  injector.registerFactory<FetchAndCacheMoviesUseCase>(() =>
+      FetchAndCacheMoviesUseCase(
+          homeRepository: injector.get<HomeRepository>()));
+  injector.registerFactory<FetchCacheGenresUseCase>(() =>
+      FetchCacheGenresUseCase(homeRepository: injector.get<HomeRepository>()));
+  injector.registerFactory<FetchCachedMoviesUseCase>(() =>
+      FetchCachedMoviesUseCase(homeRepository: injector.get<HomeRepository>()));
 
   //MovieDetail
-  injector.registerFactory<AddBookmarkUseCase>(() => AddBookmarkUseCase(movieDetailRepository: injector.get<MovieDetailRepository>()));
-  injector.registerFactory<GetCastsUseCase>(() => GetCastsUseCase(movieDetailRepository: injector.get<MovieDetailRepository>()));
-  injector.registerFactory<GetMovieDetailsUseCase>(() => GetMovieDetailsUseCase(movieDetailRepository: injector.get<MovieDetailRepository>()));
-  injector.registerFactory<IsBookmarkedUseCase>(() => IsBookmarkedUseCase(movieDetailRepository: injector.get<MovieDetailRepository>()));
-  injector.registerFactory<RemoveBookmarkUseCase>(() => RemoveBookmarkUseCase(movieDetailRepository: injector.get<MovieDetailRepository>()));
+  injector.registerFactory<AddBookmarkUseCase>(() => AddBookmarkUseCase(
+      movieDetailRepository: injector.get<MovieDetailRepository>()));
+  injector.registerFactory<GetCastsUseCase>(() => GetCastsUseCase(
+      movieDetailRepository: injector.get<MovieDetailRepository>()));
+  injector.registerFactory<GetMovieDetailsUseCase>(() => GetMovieDetailsUseCase(
+      movieDetailRepository: injector.get<MovieDetailRepository>()));
+  injector.registerFactory<IsBookmarkedUseCase>(() => IsBookmarkedUseCase(
+      movieDetailRepository: injector.get<MovieDetailRepository>()));
+  injector.registerFactory<RemoveBookmarkUseCase>(() => RemoveBookmarkUseCase(
+      movieDetailRepository: injector.get<MovieDetailRepository>()));
 
   //Bookmarks
-  injector.registerFactory<GetBookmarksUseCase>(() => GetBookmarksUseCase(bookmarkRepository: injector.get<BookmarkRepository>()));
+  injector.registerFactory<GetBookmarksUseCase>(() => GetBookmarksUseCase(
+      bookmarkRepository: injector.get<BookmarkRepository>()));
   // injector.registerFactory<RemoveBookmarkUseCase>(() => RemoveBookmarkUseCase(bookmarkRepository: injector.get<BookmarkRepository>()));
 
-
   //Notifications
-  injector.registerFactory<GetAllNotificationsUseCase>(() => GetAllNotificationsUseCase(notificationRepository: injector.get<NotificationRepository>()));
-  injector.registerFactory<ClearAllNotificationsUseCase>(() => ClearAllNotificationsUseCase(notificationRepository: injector.get<NotificationRepository>()));
-
-
+  injector.registerFactory<GetAllNotificationsUseCase>(() =>
+      GetAllNotificationsUseCase(
+          notificationRepository: injector.get<NotificationRepository>()));
+  injector.registerFactory<ClearAllNotificationsUseCase>(() =>
+      ClearAllNotificationsUseCase(
+          notificationRepository: injector.get<NotificationRepository>()));
 }
-
