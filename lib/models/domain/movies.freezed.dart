@@ -12,7 +12,7 @@ part of 'movies.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Movies {
@@ -98,9 +98,10 @@ class _$MoviesCopyWithImpl<$Res, $Val extends Movies>
 }
 
 /// @nodoc
-abstract class _$$_MoviesCopyWith<$Res> implements $MoviesCopyWith<$Res> {
-  factory _$$_MoviesCopyWith(_$_Movies value, $Res Function(_$_Movies) then) =
-      __$$_MoviesCopyWithImpl<$Res>;
+abstract class _$$MoviesImplCopyWith<$Res> implements $MoviesCopyWith<$Res> {
+  factory _$$MoviesImplCopyWith(
+          _$MoviesImpl value, $Res Function(_$MoviesImpl) then) =
+      __$$MoviesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -114,10 +115,11 @@ abstract class _$$_MoviesCopyWith<$Res> implements $MoviesCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MoviesCopyWithImpl<$Res>
-    extends _$MoviesCopyWithImpl<$Res, _$_Movies>
-    implements _$$_MoviesCopyWith<$Res> {
-  __$$_MoviesCopyWithImpl(_$_Movies _value, $Res Function(_$_Movies) _then)
+class __$$MoviesImplCopyWithImpl<$Res>
+    extends _$MoviesCopyWithImpl<$Res, _$MoviesImpl>
+    implements _$$MoviesImplCopyWith<$Res> {
+  __$$MoviesImplCopyWithImpl(
+      _$MoviesImpl _value, $Res Function(_$MoviesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -131,7 +133,7 @@ class __$$_MoviesCopyWithImpl<$Res>
     Object? totalResults = null,
     Object? cached = null,
   }) {
-    return _then(_$_Movies(
+    return _then(_$MoviesImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -167,8 +169,8 @@ class __$$_MoviesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_Movies extends _Movies {
-  const _$_Movies(
+class _$MoviesImpl extends _Movies {
+  const _$MoviesImpl(
       {this.id = Isar.autoIncrement,
       final List<Movie> movies = const [],
       this.type = '',
@@ -213,10 +215,10 @@ class _$_Movies extends _Movies {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Movies &&
+            other is _$MoviesImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._movies, _movies) &&
             (identical(other.type, type) || other.type == type) &&
@@ -242,8 +244,8 @@ class _$_Movies extends _Movies {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MoviesCopyWith<_$_Movies> get copyWith =>
-      __$$_MoviesCopyWithImpl<_$_Movies>(this, _$identity);
+  _$$MoviesImplCopyWith<_$MoviesImpl> get copyWith =>
+      __$$MoviesImplCopyWithImpl<_$MoviesImpl>(this, _$identity);
 }
 
 abstract class _Movies extends Movies {
@@ -254,7 +256,7 @@ abstract class _Movies extends Movies {
       final int page,
       final int totalPages,
       final int totalResults,
-      final bool cached}) = _$_Movies;
+      final bool cached}) = _$MoviesImpl;
   const _Movies._() : super._();
 
   @override
@@ -273,6 +275,6 @@ abstract class _Movies extends Movies {
   bool get cached;
   @override
   @JsonKey(ignore: true)
-  _$$_MoviesCopyWith<_$_Movies> get copyWith =>
+  _$$MoviesImplCopyWith<_$MoviesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

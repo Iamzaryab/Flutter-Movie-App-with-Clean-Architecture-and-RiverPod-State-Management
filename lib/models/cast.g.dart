@@ -547,14 +547,15 @@ extension CastQueryObject on QueryBuilder<Cast, Cast, QFilterCondition> {}
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Cast _$$_CastFromJson(Map<String, dynamic> json) => _$_Cast(
-      id: json['id'] as int? ?? 0,
+_$CastImpl _$$CastImplFromJson(Map<String, dynamic> json) => _$CastImpl(
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] as String? ?? '',
       originalName: json['original_name'] as String? ?? '',
       profilePath: json['profile_path'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_CastToJson(_$_Cast instance) => <String, dynamic>{
+Map<String, dynamic> _$$CastImplToJson(_$CastImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'original_name': instance.originalName,

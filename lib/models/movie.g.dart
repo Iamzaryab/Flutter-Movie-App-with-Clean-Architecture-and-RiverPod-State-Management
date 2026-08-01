@@ -1495,14 +1495,14 @@ extension MovieQueryObject on QueryBuilder<Movie, Movie, QFilterCondition> {}
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Movie _$$_MovieFromJson(Map<String, dynamic> json) => _$_Movie(
+_$MovieImpl _$$MovieImplFromJson(Map<String, dynamic> json) => _$MovieImpl(
       adult: json['adult'] as bool? ?? false,
       backdropPath: json['backdrop_path'] as String? ?? '',
       genreIds: (json['genre_ids'] as List<dynamic>?)
-              ?.map((e) => e as int)
+              ?.map((e) => (e as num).toInt())
               .toList() ??
           const [],
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       originalLanguage: json['original_language'] as String? ?? '',
       originalTitle: json['original_title'] as String? ?? '',
       overview: json['overview'] as String? ?? '',
@@ -1512,10 +1512,11 @@ _$_Movie _$$_MovieFromJson(Map<String, dynamic> json) => _$_Movie(
       title: json['title'] as String? ?? '',
       video: json['video'] as bool? ?? false,
       voteAverage: (json['vote_average'] as num?)?.toDouble() ?? 0.0,
-      voteCount: json['vote_count'] as int? ?? 0,
+      voteCount: (json['vote_count'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$_MovieToJson(_$_Movie instance) => <String, dynamic>{
+Map<String, dynamic> _$$MovieImplToJson(_$MovieImpl instance) =>
+    <String, dynamic>{
       'adult': instance.adult,
       'backdrop_path': instance.backdropPath,
       'genre_ids': instance.genreIds,

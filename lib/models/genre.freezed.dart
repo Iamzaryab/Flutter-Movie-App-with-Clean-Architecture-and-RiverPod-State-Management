@@ -12,7 +12,7 @@ part of 'genre.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Genre _$GenreFromJson(Map<String, dynamic> json) {
   return _Genre.fromJson(json);
@@ -68,18 +68,21 @@ class _$GenreCopyWithImpl<$Res, $Val extends Genre>
 }
 
 /// @nodoc
-abstract class _$$_GenreCopyWith<$Res> implements $GenreCopyWith<$Res> {
-  factory _$$_GenreCopyWith(_$_Genre value, $Res Function(_$_Genre) then) =
-      __$$_GenreCopyWithImpl<$Res>;
+abstract class _$$GenreImplCopyWith<$Res> implements $GenreCopyWith<$Res> {
+  factory _$$GenreImplCopyWith(
+          _$GenreImpl value, $Res Function(_$GenreImpl) then) =
+      __$$GenreImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'id') int id, @JsonKey(name: 'name') String name});
 }
 
 /// @nodoc
-class __$$_GenreCopyWithImpl<$Res> extends _$GenreCopyWithImpl<$Res, _$_Genre>
-    implements _$$_GenreCopyWith<$Res> {
-  __$$_GenreCopyWithImpl(_$_Genre _value, $Res Function(_$_Genre) _then)
+class __$$GenreImplCopyWithImpl<$Res>
+    extends _$GenreCopyWithImpl<$Res, _$GenreImpl>
+    implements _$$GenreImplCopyWith<$Res> {
+  __$$GenreImplCopyWithImpl(
+      _$GenreImpl _value, $Res Function(_$GenreImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +91,7 @@ class __$$_GenreCopyWithImpl<$Res> extends _$GenreCopyWithImpl<$Res, _$_Genre>
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$_Genre(
+    return _then(_$GenreImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -103,13 +106,13 @@ class __$$_GenreCopyWithImpl<$Res> extends _$GenreCopyWithImpl<$Res, _$_Genre>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Genre implements _Genre {
-  const _$_Genre(
+class _$GenreImpl implements _Genre {
+  const _$GenreImpl(
       {@JsonKey(name: 'id') this.id = 0,
       @JsonKey(name: 'name') this.name = ''});
 
-  factory _$_Genre.fromJson(Map<String, dynamic> json) =>
-      _$$_GenreFromJson(json);
+  factory _$GenreImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GenreImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -124,10 +127,10 @@ class _$_Genre implements _Genre {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Genre &&
+            other is _$GenreImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -139,12 +142,12 @@ class _$_Genre implements _Genre {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GenreCopyWith<_$_Genre> get copyWith =>
-      __$$_GenreCopyWithImpl<_$_Genre>(this, _$identity);
+  _$$GenreImplCopyWith<_$GenreImpl> get copyWith =>
+      __$$GenreImplCopyWithImpl<_$GenreImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GenreToJson(
+    return _$$GenreImplToJson(
       this,
     );
   }
@@ -153,9 +156,9 @@ class _$_Genre implements _Genre {
 abstract class _Genre implements Genre {
   const factory _Genre(
       {@JsonKey(name: 'id') final int id,
-      @JsonKey(name: 'name') final String name}) = _$_Genre;
+      @JsonKey(name: 'name') final String name}) = _$GenreImpl;
 
-  factory _Genre.fromJson(Map<String, dynamic> json) = _$_Genre.fromJson;
+  factory _Genre.fromJson(Map<String, dynamic> json) = _$GenreImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -165,6 +168,6 @@ abstract class _Genre implements Genre {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_GenreCopyWith<_$_Genre> get copyWith =>
+  _$$GenreImplCopyWith<_$GenreImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
