@@ -3140,13 +3140,13 @@ extension MovieDetailQueryProperty
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MovieDetail _$$_MovieDetailFromJson(Map<String, dynamic> json) =>
-    _$_MovieDetail(
-      isarId: json['isarId'] as int? ?? Isar.autoIncrement,
-      id: json['id'] as int? ?? 0,
-      voteCount: json['vote_count'] as int? ?? 0,
-      runtime: json['runtime'] as int? ?? 0,
-      revenue: json['revenue'] as int? ?? 0,
+_$MovieDetailImpl _$$MovieDetailImplFromJson(Map<String, dynamic> json) =>
+    _$MovieDetailImpl(
+      isarId: (json['isarId'] as num?)?.toInt() ?? Isar.autoIncrement,
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      voteCount: (json['vote_count'] as num?)?.toInt() ?? 0,
+      runtime: (json['runtime'] as num?)?.toInt() ?? 0,
+      revenue: (json['revenue'] as num?)?.toInt() ?? 0,
       voteAverage: (json['vote_average'] as num?)?.toDouble() ?? 0.0,
       popularity: (json['popularity'] as num?)?.toDouble() ?? 0.0,
       adult: json['adult'] as bool? ?? false,
@@ -3168,7 +3168,7 @@ _$_MovieDetail _$$_MovieDetailFromJson(Map<String, dynamic> json) =>
           const [],
     );
 
-Map<String, dynamic> _$$_MovieDetailToJson(_$_MovieDetail instance) =>
+Map<String, dynamic> _$$MovieDetailImplToJson(_$MovieDetailImpl instance) =>
     <String, dynamic>{
       'isarId': instance.isarId,
       'id': instance.id,

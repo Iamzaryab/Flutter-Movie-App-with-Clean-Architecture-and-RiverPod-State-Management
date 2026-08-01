@@ -12,7 +12,7 @@ part of 'genres.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Genres {
@@ -61,19 +61,21 @@ class _$GenresCopyWithImpl<$Res, $Val extends Genres>
 }
 
 /// @nodoc
-abstract class _$$_GenresCopyWith<$Res> implements $GenresCopyWith<$Res> {
-  factory _$$_GenresCopyWith(_$_Genres value, $Res Function(_$_Genres) then) =
-      __$$_GenresCopyWithImpl<$Res>;
+abstract class _$$GenresImplCopyWith<$Res> implements $GenresCopyWith<$Res> {
+  factory _$$GenresImplCopyWith(
+          _$GenresImpl value, $Res Function(_$GenresImpl) then) =
+      __$$GenresImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, List<Genre> genres});
 }
 
 /// @nodoc
-class __$$_GenresCopyWithImpl<$Res>
-    extends _$GenresCopyWithImpl<$Res, _$_Genres>
-    implements _$$_GenresCopyWith<$Res> {
-  __$$_GenresCopyWithImpl(_$_Genres _value, $Res Function(_$_Genres) _then)
+class __$$GenresImplCopyWithImpl<$Res>
+    extends _$GenresCopyWithImpl<$Res, _$GenresImpl>
+    implements _$$GenresImplCopyWith<$Res> {
+  __$$GenresImplCopyWithImpl(
+      _$GenresImpl _value, $Res Function(_$GenresImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -82,7 +84,7 @@ class __$$_GenresCopyWithImpl<$Res>
     Object? id = null,
     Object? genres = null,
   }) {
-    return _then(_$_Genres(
+    return _then(_$GenresImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -97,8 +99,8 @@ class __$$_GenresCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Genres extends _Genres {
-  const _$_Genres(
+class _$GenresImpl extends _Genres {
+  const _$GenresImpl(
       {this.id = Isar.autoIncrement, final List<Genre> genres = const []})
       : _genres = genres,
         super._();
@@ -121,10 +123,10 @@ class _$_Genres extends _Genres {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Genres &&
+            other is _$GenresImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._genres, _genres));
   }
@@ -136,12 +138,13 @@ class _$_Genres extends _Genres {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GenresCopyWith<_$_Genres> get copyWith =>
-      __$$_GenresCopyWithImpl<_$_Genres>(this, _$identity);
+  _$$GenresImplCopyWith<_$GenresImpl> get copyWith =>
+      __$$GenresImplCopyWithImpl<_$GenresImpl>(this, _$identity);
 }
 
 abstract class _Genres extends Genres {
-  const factory _Genres({final int id, final List<Genre> genres}) = _$_Genres;
+  const factory _Genres({final int id, final List<Genre> genres}) =
+      _$GenresImpl;
   const _Genres._() : super._();
 
   @override
@@ -150,6 +153,6 @@ abstract class _Genres extends Genres {
   List<Genre> get genres;
   @override
   @JsonKey(ignore: true)
-  _$$_GenresCopyWith<_$_Genres> get copyWith =>
+  _$$GenresImplCopyWith<_$GenresImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

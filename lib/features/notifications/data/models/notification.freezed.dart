@@ -12,7 +12,7 @@ part of 'notification.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$NotificationModel {
@@ -75,22 +75,22 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
 }
 
 /// @nodoc
-abstract class _$$_NotificationModelCopyWith<$Res>
+abstract class _$$NotificationModelImplCopyWith<$Res>
     implements $NotificationModelCopyWith<$Res> {
-  factory _$$_NotificationModelCopyWith(_$_NotificationModel value,
-          $Res Function(_$_NotificationModel) then) =
-      __$$_NotificationModelCopyWithImpl<$Res>;
+  factory _$$NotificationModelImplCopyWith(_$NotificationModelImpl value,
+          $Res Function(_$NotificationModelImpl) then) =
+      __$$NotificationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String title, String message, bool positive});
 }
 
 /// @nodoc
-class __$$_NotificationModelCopyWithImpl<$Res>
-    extends _$NotificationModelCopyWithImpl<$Res, _$_NotificationModel>
-    implements _$$_NotificationModelCopyWith<$Res> {
-  __$$_NotificationModelCopyWithImpl(
-      _$_NotificationModel _value, $Res Function(_$_NotificationModel) _then)
+class __$$NotificationModelImplCopyWithImpl<$Res>
+    extends _$NotificationModelCopyWithImpl<$Res, _$NotificationModelImpl>
+    implements _$$NotificationModelImplCopyWith<$Res> {
+  __$$NotificationModelImplCopyWithImpl(_$NotificationModelImpl _value,
+      $Res Function(_$NotificationModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -101,7 +101,7 @@ class __$$_NotificationModelCopyWithImpl<$Res>
     Object? message = null,
     Object? positive = null,
   }) {
-    return _then(_$_NotificationModel(
+    return _then(_$NotificationModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ class __$$_NotificationModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NotificationModel implements _NotificationModel {
-  const _$_NotificationModel(
+class _$NotificationModelImpl implements _NotificationModel {
+  const _$NotificationModelImpl(
       {this.id = Isar.autoIncrement,
       this.title = '',
       this.message = '',
@@ -150,10 +150,10 @@ class _$_NotificationModel implements _NotificationModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NotificationModel &&
+            other is _$NotificationModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.message, message) || other.message == message) &&
@@ -167,8 +167,8 @@ class _$_NotificationModel implements _NotificationModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NotificationModelCopyWith<_$_NotificationModel> get copyWith =>
-      __$$_NotificationModelCopyWithImpl<_$_NotificationModel>(
+  _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
+      __$$NotificationModelImplCopyWithImpl<_$NotificationModelImpl>(
           this, _$identity);
 }
 
@@ -177,7 +177,7 @@ abstract class _NotificationModel implements NotificationModel {
       {final int id,
       final String title,
       final String message,
-      final bool positive}) = _$_NotificationModel;
+      final bool positive}) = _$NotificationModelImpl;
 
   @override
   int get id;
@@ -189,6 +189,6 @@ abstract class _NotificationModel implements NotificationModel {
   bool get positive;
   @override
   @JsonKey(ignore: true)
-  _$$_NotificationModelCopyWith<_$_NotificationModel> get copyWith =>
+  _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

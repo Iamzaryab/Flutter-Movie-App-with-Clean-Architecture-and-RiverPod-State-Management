@@ -902,20 +902,21 @@ extension MoviesQueryProperty on QueryBuilder<Movies, Movies, QQueryProperty> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Movies _$$_MoviesFromJson(Map<String, dynamic> json) => _$_Movies(
-      id: json['id'] as int? ?? Isar.autoIncrement,
+_$MoviesImpl _$$MoviesImplFromJson(Map<String, dynamic> json) => _$MoviesImpl(
+      id: (json['id'] as num?)?.toInt() ?? Isar.autoIncrement,
       movies: (json['movies'] as List<dynamic>?)
               ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       type: json['type'] as String? ?? '',
-      page: json['page'] as int? ?? 0,
-      totalPages: json['totalPages'] as int? ?? 0,
-      totalResults: json['totalResults'] as int? ?? 0,
+      page: (json['page'] as num?)?.toInt() ?? 0,
+      totalPages: (json['totalPages'] as num?)?.toInt() ?? 0,
+      totalResults: (json['totalResults'] as num?)?.toInt() ?? 0,
       cached: json['cached'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_MoviesToJson(_$_Movies instance) => <String, dynamic>{
+Map<String, dynamic> _$$MoviesImplToJson(_$MoviesImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'movies': instance.movies.map((e) => e.toJson()).toList(),
       'type': instance.type,

@@ -12,7 +12,7 @@ part of 'casts.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Casts {
@@ -67,18 +67,21 @@ class _$CastsCopyWithImpl<$Res, $Val extends Casts>
 }
 
 /// @nodoc
-abstract class _$$_CastsCopyWith<$Res> implements $CastsCopyWith<$Res> {
-  factory _$$_CastsCopyWith(_$_Casts value, $Res Function(_$_Casts) then) =
-      __$$_CastsCopyWithImpl<$Res>;
+abstract class _$$CastsImplCopyWith<$Res> implements $CastsCopyWith<$Res> {
+  factory _$$CastsImplCopyWith(
+          _$CastsImpl value, $Res Function(_$CastsImpl) then) =
+      __$$CastsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int isarId, int id, List<Cast> casts});
 }
 
 /// @nodoc
-class __$$_CastsCopyWithImpl<$Res> extends _$CastsCopyWithImpl<$Res, _$_Casts>
-    implements _$$_CastsCopyWith<$Res> {
-  __$$_CastsCopyWithImpl(_$_Casts _value, $Res Function(_$_Casts) _then)
+class __$$CastsImplCopyWithImpl<$Res>
+    extends _$CastsCopyWithImpl<$Res, _$CastsImpl>
+    implements _$$CastsImplCopyWith<$Res> {
+  __$$CastsImplCopyWithImpl(
+      _$CastsImpl _value, $Res Function(_$CastsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +91,7 @@ class __$$_CastsCopyWithImpl<$Res> extends _$CastsCopyWithImpl<$Res, _$_Casts>
     Object? id = null,
     Object? casts = null,
   }) {
-    return _then(_$_Casts(
+    return _then(_$CastsImpl(
       isarId: null == isarId
           ? _value.isarId
           : isarId // ignore: cast_nullable_to_non_nullable
@@ -107,8 +110,8 @@ class __$$_CastsCopyWithImpl<$Res> extends _$CastsCopyWithImpl<$Res, _$_Casts>
 
 /// @nodoc
 
-class _$_Casts extends _Casts {
-  const _$_Casts(
+class _$CastsImpl extends _Casts {
+  const _$CastsImpl(
       {this.isarId = Isar.autoIncrement,
       this.id = 0,
       final List<Cast> casts = const []})
@@ -136,10 +139,10 @@ class _$_Casts extends _Casts {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Casts &&
+            other is _$CastsImpl &&
             (identical(other.isarId, isarId) || other.isarId == isarId) &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._casts, _casts));
@@ -152,13 +155,13 @@ class _$_Casts extends _Casts {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CastsCopyWith<_$_Casts> get copyWith =>
-      __$$_CastsCopyWithImpl<_$_Casts>(this, _$identity);
+  _$$CastsImplCopyWith<_$CastsImpl> get copyWith =>
+      __$$CastsImplCopyWithImpl<_$CastsImpl>(this, _$identity);
 }
 
 abstract class _Casts extends Casts {
   const factory _Casts(
-      {final int isarId, final int id, final List<Cast> casts}) = _$_Casts;
+      {final int isarId, final int id, final List<Cast> casts}) = _$CastsImpl;
   const _Casts._() : super._();
 
   @override
@@ -169,6 +172,6 @@ abstract class _Casts extends Casts {
   List<Cast> get casts;
   @override
   @JsonKey(ignore: true)
-  _$$_CastsCopyWith<_$_Casts> get copyWith =>
+  _$$CastsImplCopyWith<_$CastsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
