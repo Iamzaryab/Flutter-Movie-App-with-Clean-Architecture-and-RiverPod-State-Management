@@ -2,7 +2,6 @@
   "search.exclude": {
     "**/.sst": true
   },
-  "task.allowAutomaticTasks": true,
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.preferences.importModuleSpecifier": "relative",
